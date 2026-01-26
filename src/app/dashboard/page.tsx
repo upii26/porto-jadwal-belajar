@@ -1,18 +1,28 @@
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
+// DashboardPage.tsx
+'use client'
+
+import { useState } from 'react'
+import Sidebar from "../header/components/Sidebar";
+import Header from "../header/components/Header";
 import StatCard from "./components/StatCard";
 import LineChart from "./components/LineChart";
 import PieChart from "./components/PieChart";
 import ListMahasiswa from "./components/ListSiswa";
 
 export default function DashboardPage() {
+  const [sidebarOpen, setSidebarOpen] = useState(true);
+
   return (
     <div className="min-h-screen bg-gray-50 flex">
       {/* Sidebar */}
-      <Sidebar />
+      <Sidebar isOpen={sidebarOpen} setIsOpen={setSidebarOpen} />
 
       {/* Main Content */}
-      <div className="flex-1 ml-32">
+      <div 
+        className={`flex-1 transition-all duration-300 ${
+          sidebarOpen ? 'ml-64' : 'ml-32'
+        }`}
+      >
         {/* Header */}
         <Header />
 

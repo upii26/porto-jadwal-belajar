@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Link from "next/link";
 
 interface Student {
   id: number
@@ -40,9 +41,9 @@ export default function ListSiswa() {
   ])
 
   const [searchTerm, setSearchTerm] = useState('')
-  const [sortConfig, setSortConfig] = useState<{ key: keyof Student | ''; direction: 'asc' | 'desc' | '' }>({ 
-    key: '', 
-    direction: '' 
+  const [sortConfig, setSortConfig] = useState<{ key: keyof Student | ''; direction: 'asc' | 'desc' | '' }>({
+    key: '',
+    direction: ''
   })
   const [currentPage, setCurrentPage] = useState(1)
   const [itemsPerPage] = useState(10) // Jumlah item per halaman
@@ -58,10 +59,10 @@ export default function ListSiswa() {
   // Sort students
   const sortedStudents = [...filteredStudents].sort((a, b) => {
     if (!sortConfig.key) return 0
-    
+
     const aValue = a[sortConfig.key]
     const bValue = b[sortConfig.key]
-    
+
     if (aValue < bValue) return sortConfig.direction === 'asc' ? -1 : 1
     if (aValue > bValue) return sortConfig.direction === 'asc' ? 1 : -1
     return 0
@@ -99,7 +100,7 @@ export default function ListSiswa() {
   const getPageNumbers = () => {
     const pages = []
     const maxPagesToShow = 5
-    
+
     if (totalPages <= maxPagesToShow) {
       for (let i = 1; i <= totalPages; i++) {
         pages.push(i)
@@ -123,7 +124,7 @@ export default function ListSiswa() {
         pages.push(totalPages)
       }
     }
-    
+
     return pages
   }
 
@@ -134,9 +135,7 @@ export default function ListSiswa() {
         <div className="flex items-center justify-between mb-4">
           <h2 className="text-lg font-semibold text-gray-800">List Mahasiswa</h2>
           <div className="flex items-center space-x-2">
-            <button className="px-4 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-700 transition text-sm">
-              + Tambah Mahasiswa
-            </button>
+          
             <button className="p-2 hover:bg-gray-100 rounded-lg transition">
               <svg className="w-5 h-5 text-gray-600" fill="currentColor" viewBox="0 0 20 20">
                 <path d="M10 6a2 2 0 110-4 2 2 0 010 4zM10 12a2 2 0 110-4 2 2 0 010 4zM10 18a2 2 0 110-4 2 2 0 010 4z" />
@@ -171,7 +170,7 @@ export default function ListSiswa() {
               <th className="px-6 py-3 text-left">
                 <input type="checkbox" className="rounded border-gray-300" />
               </th>
-              <th 
+              <th
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                 onClick={() => handleSort('name')}
               >
@@ -182,7 +181,7 @@ export default function ListSiswa() {
                   </svg>
                 </div>
               </th>
-              <th 
+              <th
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                 onClick={() => handleSort('nim')}
               >
@@ -193,7 +192,7 @@ export default function ListSiswa() {
                   </svg>
                 </div>
               </th>
-              <th 
+              <th
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                 onClick={() => handleSort('jurusan')}
               >
@@ -204,7 +203,7 @@ export default function ListSiswa() {
                   </svg>
                 </div>
               </th>
-              <th 
+              <th
                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer hover:bg-gray-100"
                 onClick={() => handleSort('ipk')}
               >
@@ -217,9 +216,6 @@ export default function ListSiswa() {
               </th>
               <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Status
-              </th>
-              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                Actions
               </th>
             </tr>
           </thead>
@@ -254,34 +250,14 @@ export default function ListSiswa() {
                   </span>
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap">
-                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                    student.status === 'active' 
-                      ? 'bg-green-100 text-green-700' 
+                  <span className={`px-3 py-1 rounded-full text-xs font-medium ${student.status === 'active'
+                      ? 'bg-green-100 text-green-700'
                       : 'bg-red-100 text-red-700'
-                  }`}>
+                    }`}>
                     {student.status}
                   </span>
                 </td>
-                <td className="px-6 py-4 whitespace-nowrap text-sm">
-                  <div className="flex items-center space-x-2">
-                    <button className="text-blue-600 hover:text-blue-800 transition">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
-                      </svg>
-                    </button>
-                    <button className="text-green-600 hover:text-green-800 transition">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                      </svg>
-                    </button>
-                    <button className="text-red-600 hover:text-red-800 transition">
-                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
-                    </button>
-                  </div>
-                </td>
+
               </tr>
             ))}
           </tbody>
@@ -296,14 +272,14 @@ export default function ListSiswa() {
           <span className="font-medium">{sortedStudents.length}</span> results
         </div>
         <div className="flex items-center space-x-2">
-          <button 
+          <button
             onClick={handlePrevious}
             disabled={currentPage === 1}
             className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm disabled:opacity-50 disabled:cursor-not-allowed"
           >
             Previous
           </button>
-          
+
           {getPageNumbers().map((page, index) => (
             page === '...' ? (
               <span key={`ellipsis-${index}`} className="px-3 py-1 text-gray-500">...</span>
@@ -311,18 +287,17 @@ export default function ListSiswa() {
               <button
                 key={page}
                 onClick={() => handlePageChange(page as number)}
-                className={`px-3 py-1 rounded-lg text-sm transition ${
-                  currentPage === page
+                className={`px-3 py-1 rounded-lg text-sm transition ${currentPage === page
                     ? 'bg-gray-800 text-white'
                     : 'border border-gray-300 hover:bg-gray-50'
-                }`}
+                  }`}
               >
                 {page}
               </button>
             )
           ))}
-          
-          <button 
+
+          <button
             onClick={handleNext}
             disabled={currentPage === totalPages}
             className="px-3 py-1 border border-gray-300 rounded-lg hover:bg-gray-50 transition text-sm disabled:opacity-50 disabled:cursor-not-allowed"
