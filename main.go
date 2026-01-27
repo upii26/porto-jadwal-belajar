@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"porto-jadwal-belajar-api/database"
 	_ "porto-jadwal-belajar-api/docs"
 	"porto-jadwal-belajar-api/routes"
 
@@ -27,6 +28,7 @@ import (
 
 func main() {
 	fmt.Println("hello bapak")
+	database.Connection()
 
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
