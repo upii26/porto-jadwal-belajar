@@ -1,12 +1,5 @@
-export interface MahasiswaData {
-    id: number
-    nim: string
-    nama: string
-    prodi: string
-    gender: string
-    email: string
-    status: string
-  }
+import { MahasiswaData } from "@/app/types/Mahasiswa"
+
 const API_BASE_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000/api"
 
