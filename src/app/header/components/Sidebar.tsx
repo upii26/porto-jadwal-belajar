@@ -121,25 +121,30 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                 active={pathname.startsWith('/matakuliah')}
                 onClick={() => handleMenuClick('/matakuliah')}
               />
+               <SubItem
+                label="Prodi"
+                active={pathname.startsWith('/prodi')}
+                onClick={() => handleMenuClick('/prodi')}
+              />
             </div>
           )}
         </div>
 
         {/* MENU LAIN */}
-        <SidebarItem
-          icon="📅"
-          label="Calendar"
+        {/* <SidebarItem
+          icon="📚"
+          label="Prodi"
           isOpen={isOpen}
-          isActive={pathname === '/calendar'}
-          onClick={() => handleMenuClick('/calendar')}
-        />
+          isActive={pathname === '/prodi'}
+          onClick={() => handleMenuClick('/prodi')}
+        /> */}
 
         <SidebarItem
-          icon="⚙️"
-          label="Settings"
+          icon="⏰"
+          label="Penjadwalan"
           isOpen={isOpen}
-          isActive={pathname === '/settings'}
-          onClick={() => handleMenuClick('/settings')}
+          isActive={pathname === '/jadwal'}
+          onClick={() => handleMenuClick('/jadwal')}
         />
       </div>
     </div>
