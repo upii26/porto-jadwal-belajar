@@ -71,6 +71,32 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
           onClick={() => handleMenuClick('/dashboard')}
         />
 
+
+
+        {/* MENU LAIN */}
+        {/* <SidebarItem
+          icon="📚"
+          label="Prodi"
+          isOpen={isOpen}
+          isActive={pathname === '/prodi'}
+          onClick={() => handleMenuClick('/prodi')}
+        /> */}
+
+        <SidebarItem
+          icon="⏰"
+          label="Jadwal"
+          isOpen={isOpen}
+          isActive={pathname === '/jadwal'}
+          onClick={() => handleMenuClick('/jadwal')}
+        />
+        <SidebarItem
+          icon="🗓️"
+          label="Penjadwalan"
+          isOpen={isOpen}
+          isActive={pathname === '/penjadwalan'}
+          onClick={() => handleMenuClick('/penjadwalan')}
+        />
+
         {/* MASTER DATA */}
         <div className="w-full">
           <button
@@ -111,17 +137,17 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
                 active={pathname.startsWith('/dosen')}
                 onClick={() => handleMenuClick('/dosen')}
               />
-               <SubItem
+              <SubItem
                 label="Ruangan"
                 active={pathname.startsWith('/ruangan')}
                 onClick={() => handleMenuClick('/ruangan')}
               />
-               <SubItem
+              <SubItem
                 label="Matakuliah"
                 active={pathname.startsWith('/matakuliah')}
                 onClick={() => handleMenuClick('/matakuliah')}
               />
-               <SubItem
+              <SubItem
                 label="Prodi"
                 active={pathname.startsWith('/prodi')}
                 onClick={() => handleMenuClick('/prodi')}
@@ -129,23 +155,6 @@ export default function Sidebar({ isOpen, setIsOpen }: SidebarProps) {
             </div>
           )}
         </div>
-
-        {/* MENU LAIN */}
-        {/* <SidebarItem
-          icon="📚"
-          label="Prodi"
-          isOpen={isOpen}
-          isActive={pathname === '/prodi'}
-          onClick={() => handleMenuClick('/prodi')}
-        /> */}
-
-        <SidebarItem
-          icon="⏰"
-          label="Penjadwalan"
-          isOpen={isOpen}
-          isActive={pathname === '/jadwal'}
-          onClick={() => handleMenuClick('/jadwal')}
-        />
       </div>
     </div>
   )
