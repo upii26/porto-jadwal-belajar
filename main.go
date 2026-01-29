@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"porto-jadwal-belajar-api/database"
 	_ "porto-jadwal-belajar-api/docs"
 	"porto-jadwal-belajar-api/routes"
 
@@ -28,7 +27,6 @@ import (
 
 func main() {
 	fmt.Println("hello bapak")
-	database.Connection()
 
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
@@ -37,7 +35,8 @@ func main() {
 	{
 		sr := routes.ScholarRoute{}
 		scholarRoutes := api.Group("/mahasiswa")
-		scholarRoutes.GET(":id", sr.ScholarList)
+		scholarRoutes.GET("", sr.ScholarList)
+		// scholarRoutes.GET(":id", sr.ScholarSingleData)
 	}
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))

@@ -24,6 +24,47 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/mahasiswa": {
+            "get": {
+                "description": "mengambil data mahasiswa",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "mahasiswa"
+                ],
+                "summary": "menampilkan semua data mahasiswa",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/model.Scholar"
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.HTTPError"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.HTTPError"
+                        }
+                    },
+                    "500": {
+                        "description": "Internal Server Error",
+                        "schema": {
+                            "$ref": "#/definitions/handlers.HTTPError"
+                        }
+                    }
+                }
+            }
+        },
         "/mahasiswa/{id}": {
             "get": {
                 "description": "mengambil data berdasarkan NIM",
@@ -92,14 +133,23 @@ const docTemplate = `{
         "model.Scholar": {
             "type": "object",
             "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "gender": {
+                    "type": "string"
+                },
                 "nama": {
                     "type": "string"
                 },
                 "nim": {
-                    "type": "integer"
+                    "type": "string"
                 },
-                "semester": {
-                    "type": "integer"
+                "prodi": {
+                    "type": "string"
+                },
+                "status": {
+                    "type": "string"
                 }
             }
         }

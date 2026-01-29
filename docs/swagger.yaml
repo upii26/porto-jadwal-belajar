@@ -11,12 +11,18 @@ definitions:
     type: object
   model.Scholar:
     properties:
+      email:
+        type: string
+      gender:
+        type: string
       nama:
         type: string
       nim:
-        type: integer
-      semester:
-        type: integer
+        type: string
+      prodi:
+        type: string
+      status:
+        type: string
     type: object
 host: localhost:8080
 info:
@@ -32,6 +38,33 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
+  /mahasiswa:
+    get:
+      consumes:
+      - application/json
+      description: mengambil data mahasiswa
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/model.Scholar'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handlers.HTTPError'
+      summary: menampilkan semua data mahasiswa
+      tags:
+      - mahasiswa
   /mahasiswa/{id}:
     get:
       consumes:
