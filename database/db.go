@@ -4,17 +4,18 @@ import (
 	"database/sql"
 	"fmt"
 	"log"
+	"os"
 
 	_ "github.com/lib/pq"
 )
 
 func Connection() {
 	var (
-		dbhost = ""
-		dbport = ""
-		dbuser = ""
-		dbpass = ""
-		dbname = ""
+		dbhost = os.Getenv("DBHOST")
+		dbport = os.Getenv("DBPORT")
+		dbuser = os.Getenv("DBUSER")
+		dbpass = os.Getenv("DBPASS")
+		dbname = os.Getenv("DBNAME")
 	)
 	connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=require", dbhost, dbport, dbuser, dbpass, dbname)
 	db, err := sql.Open("postgres", connStr)

@@ -1,0 +1,23 @@
+SELECT * FROM scholars;
+
+DROP TABLE scholars;
+DROP TABLE lecturers;
+
+CREATE TABLE IF NOT EXISTS scholars (
+    id SERIAL PRIMARY KEY,
+    nim text NOT NULL,
+    nama text NOT NULL,
+    prodi text NOT NULL,
+    gender text NOT NULL,
+    email text NOT NULL,
+    status text NOT NULL,
+    created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamptz,
+    deleted_at timestamptz
+);
+
+INSERT INTO scholars (nim, nama, prodi, gender, email, status)
+VALUES ('220001', 'Budi Santoso', 'Informatika', 'Laki-Laki', 'budi@gmail.com', 'Aktif'),
+        ('220002', 'Siti Aminah', 'Sistem Informasi', 'Perempuan', 'siti@gmail.com', 'Aktif'),
+        ('220003', 'Wawan Suwanto', 'Sistem Informasi', 'Laki-Laki', 'wawan@gmail.com', 'Aktif'),
+        ('220004', 'Amanda Putri', 'Informatika', 'Perempuan', 'putri@gmail.com', 'Non Aktif');
