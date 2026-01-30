@@ -31,35 +31,10 @@
                     "mahasiswa"
                 ],
                 "summary": "menampilkan semua data mahasiswa",
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.Scholar"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.HTTPError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.HTTPError"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.HTTPError"
-                        }
-                    }
-                }
+                "responses": {}
             }
         },
-        "/mahasiswa/{id}": {
+        "/mahasiswa/{nim}": {
             "get": {
                 "description": "mengambil data berdasarkan NIM",
                 "consumes": [
@@ -74,77 +49,14 @@
                 "summary": "menampilkan data mahasiswa",
                 "parameters": [
                     {
-                        "type": "integer",
+                        "type": "string",
                         "description": "NIM",
-                        "name": "id",
+                        "name": "nim",
                         "in": "path",
                         "required": true
                     }
                 ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/model.Scholar"
-                        }
-                    },
-                    "400": {
-                        "description": "Bad Request",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.HTTPError"
-                        }
-                    },
-                    "404": {
-                        "description": "Not Found",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.HTTPError"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/handlers.HTTPError"
-                        }
-                    }
-                }
-            }
-        }
-    },
-    "definitions": {
-        "handlers.HTTPError": {
-            "type": "object",
-            "properties": {
-                "message": {
-                    "type": "string",
-                    "example": "bad request"
-                },
-                "status": {
-                    "type": "integer",
-                    "example": 400
-                }
-            }
-        },
-        "model.Scholar": {
-            "type": "object",
-            "properties": {
-                "email": {
-                    "type": "string"
-                },
-                "gender": {
-                    "type": "string"
-                },
-                "nama": {
-                    "type": "string"
-                },
-                "nim": {
-                    "type": "string"
-                },
-                "prodi": {
-                    "type": "string"
-                },
-                "status": {
-                    "type": "string"
-                }
+                "responses": {}
             }
         }
     }

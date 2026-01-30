@@ -1,29 +1,4 @@
 basePath: /api
-definitions:
-  handlers.HTTPError:
-    properties:
-      message:
-        example: bad request
-        type: string
-      status:
-        example: 400
-        type: integer
-    type: object
-  model.Scholar:
-    properties:
-      email:
-        type: string
-      gender:
-        type: string
-      nama:
-        type: string
-      nim:
-        type: string
-      prodi:
-        type: string
-      status:
-        type: string
-    type: object
 host: localhost:8080
 info:
   contact:
@@ -45,27 +20,11 @@ paths:
       description: mengambil data mahasiswa
       produces:
       - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.Scholar'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
+      responses: {}
       summary: menampilkan semua data mahasiswa
       tags:
       - mahasiswa
-  /mahasiswa/{id}:
+  /mahasiswa/{nim}:
     get:
       consumes:
       - application/json
@@ -73,28 +32,12 @@ paths:
       parameters:
       - description: NIM
         in: path
-        name: id
+        name: nim
         required: true
-        type: integer
+        type: string
       produces:
       - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/model.Scholar'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "404":
-          description: Not Found
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/handlers.HTTPError'
+      responses: {}
       summary: menampilkan data mahasiswa
       tags:
       - mahasiswa

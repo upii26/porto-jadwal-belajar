@@ -2,9 +2,12 @@ package main
 
 import (
 	"fmt"
+	"os"
+	"porto-jadwal-belajar-api/docs"
 	_ "porto-jadwal-belajar-api/docs"
 	"porto-jadwal-belajar-api/routes"
 
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
@@ -30,15 +33,24 @@ func main() {
 
 	gin.SetMode(gin.ReleaseMode)
 	router := gin.Default()
+	// cors setting
+	router.Use(cors.New(cors.Config{
+		AllowOrigins: []string{"http://localhost:5173"},
+		AllowMethods: []string{"GET", "POST"},
+		AllowHeaders: []string{"Content-Type"},
+	}))
 	api := router.Group("/api")
 
 	{
 		sr := routes.ScholarRoute{}
 		scholarRoutes := api.Group("/mahasiswa")
 		scholarRoutes.GET("", sr.ScholarList)
-		// scholarRoutes.GET(":id", sr.ScholarSingleData)
+		scholarRoutes.GET(":nim", sr.ScholarSingleData)
 	}
 
+	if _, exist := os.LookupEnv("HOST_URL"); exist {
+		docs.SwaggerInfo.Host = os.Getenv("HOST_URL")
+	}
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	router.Run(":8080")
 }
