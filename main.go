@@ -47,6 +47,12 @@ func main() {
 		scholarRoutes.GET("", sr.ScholarList)
 		scholarRoutes.GET(":nim", sr.ScholarSingleData)
 	}
+	{
+		lr := routes.LecturerRoute{}
+		lecturerRoutes := api.Group("/dosen")
+		lecturerRoutes.GET("", lr.LecturerList)
+		lecturerRoutes.GET(":nds", lr.LecturerSingleData)
+	}
 
 	if _, exist := os.LookupEnv("HOST_URL"); exist {
 		docs.SwaggerInfo.Host = os.Getenv("HOST_URL")

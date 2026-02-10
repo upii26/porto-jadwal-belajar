@@ -1,4 +1,5 @@
 SELECT * FROM scholars;
+SELECT * FROM lecturers;
 
 DROP TABLE scholars;
 DROP TABLE lecturers;
@@ -21,3 +22,22 @@ VALUES ('220001', 'Budi Santoso', 'Informatika', 'Laki-Laki', 'budi@gmail.com', 
         ('220002', 'Siti Aminah', 'Sistem Informasi', 'Perempuan', 'siti@gmail.com', 'Aktif'),
         ('220003', 'Wawan Suwanto', 'Sistem Informasi', 'Laki-Laki', 'wawan@gmail.com', 'Aktif'),
         ('220004', 'Amanda Putri', 'Informatika', 'Perempuan', 'putri@gmail.com', 'Non Aktif');
+
+CREATE TABLE IF NOT EXISTS lecturers (
+    id SERIAL PRIMARY KEY,
+    noDosen text NOT NULL,
+    nama text NOT NULL,
+    prodi text NOT NULL,
+    email text NOT NULL,
+    status text NOT NULL,
+    created_at timestamptz DEFAULT CURRENT_TIMESTAMP,
+    updated_at timestamptz,
+    deleted_at timestamptz
+);
+
+INSERT INTO lecturers (nim, nama, prodi, email, status)
+VALUES ('D001', 'Dr. Budi Hartono, M.Kom', 'Teknik Informatika', 'budi.hartono@university.ac.id', 'Aktif'),
+        ('D002', 'Prof. Siti Aminah, Ph.D', 'Sistem Informasi', 'siti.aminah@university.ac.id', 'Aktif'),
+        ('D003', 'Drs. Ahmad Fauzi, M.T', 'Teknik Komputer', 'ahmad.fauzi@university.ac.id', 'Aktif'),
+        ('D004', 'Dr. Rina Kusuma, M.Sc', 'Manajemen Informatika', 'rina.kusuma@university.ac.id', 'Cuti'),
+        ('D005', 'Ir. Teguh Prasetyo, M.Kom', 'Teknik Informatika', 'teguh.prasetyo@university.ac.id', 'Aktif');
