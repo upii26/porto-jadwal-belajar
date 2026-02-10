@@ -24,6 +24,47 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
+        "/dosen": {
+            "get": {
+                "description": "mengambil data dosen",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "dosen"
+                ],
+                "summary": "menampilkan semua data dosen",
+                "responses": {}
+            }
+        },
+        "/dosen/{NDS}": {
+            "get": {
+                "description": "mengambil data berdasarkan NoDosen",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "dosen"
+                ],
+                "summary": "menampilkan data dosen",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "NoDosen",
+                        "name": "nim",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {}
+            }
+        },
         "/mahasiswa": {
             "get": {
                 "description": "mengambil data mahasiswa",

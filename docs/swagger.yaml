@@ -13,6 +13,34 @@ info:
   title: Swagger Example API
   version: "1.0"
 paths:
+  /dosen:
+    get:
+      consumes:
+      - application/json
+      description: mengambil data dosen
+      produces:
+      - application/json
+      responses: {}
+      summary: menampilkan semua data dosen
+      tags:
+      - dosen
+  /dosen/{NDS}:
+    get:
+      consumes:
+      - application/json
+      description: mengambil data berdasarkan NoDosen
+      parameters:
+      - description: NoDosen
+        in: path
+        name: nim
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses: {}
+      summary: menampilkan data dosen
+      tags:
+      - dosen
   /mahasiswa:
     get:
       consumes:
